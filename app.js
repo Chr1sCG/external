@@ -55,8 +55,8 @@ app.post(`/api/v1/synchronizer/data`, wrap(async (req, res) => {
 
 app.post(`/api/v1/automations/action/execute`, wrap(async (req, res) => {
 
-    let {action} = req.body;
-    /*
+    let {action, account} = req.body;
+
     let req_opts = {headers: {
         "Zotero-API-Key" : account.token
      }
@@ -66,26 +66,50 @@ app.post(`/api/v1/automations/action/execute`, wrap(async (req, res) => {
     if (account.librarytype) {
         prefix = "groups";
     }
-    */
-    
-    if (action.action == "add-new-note") {
 
-        /*
+    if (action.action == "add-new-paper") {
+        let a = new Cite(action.args.doi);
+        let output = JSON.parse(a.format('data'));
+        
+        let url = "https://api.zotero.org/items/new?itemType=";
+        
+        if (output[0].type == "article-journal") {
+            url += "journalArticle";
+        } else if (output[0].type == "paper-conference") {
+            url += "conferencePaper";
+        } else {
+            url += "report";
+        }
+        
+        response = await (got(url, req_opts));
+        if (await handleBackoff(response.headers) > 0) {
+            return res.json({message: "Rate limits exceeded", tryLater:true});
+        }    
+        json_obj = JSON.parse(response.body);
+        populateJSONObj(json_obj, output);
+        const new_url = `https://api.zotero.org/${prefix}/${account.libraryid}/items/`;
+
+        const result = await got(new_url, {
+            method: 'POST',
+            headers: {
+                'Zotero-API-Key': account.token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify([json_obj])
+        });
+        json_resp = JSON.parse(result.body);
+        return res.json(json_resp);
+
+    } else if (action.action == "add-new-note") {
+
         const url = "https://api.zotero.org/items/new?itemType=note";        
         const response = await (got(url, req_opts));
-        
         if (await handleBackoff(response.headers) > 0) {
             return res.json({message: "Rate limits exceeded", tryLater:true});
         }
         const json_obj = JSON.parse(response.body);
-        
         json_obj.note = action.args.note;
         json_obj.parentItem = action.args.parent;
-        */
-        
-        console.log(action);
-        //console.log(account);
-        /*
         const new_url = `https://api.zotero.org/${prefix}/${account.libraryid}/items/`;
         const result = await got(new_url, {
             method: "POST",
@@ -96,9 +120,7 @@ app.post(`/api/v1/automations/action/execute`, wrap(async (req, res) => {
             body: JSON.stringify([json_obj])
         });
         const result_json =  JSON.parse(result.body);
-        */
-        return res.json({"message":"done"});;  
-        
+        return res.json(result_json);        
     }
     return res.json({"message":"invalid action"});
 
