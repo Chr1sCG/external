@@ -55,42 +55,9 @@ app.post(`/api/v1/synchronizer/data`, wrap(async (req, res) => {
 
 app.post(`/api/v1/automations/action/execute`, wrap(async (req, res) => {
 
-    let {action, account} = req.body;
-    /*
+    let {action} = req.body;
 
-    let req_opts = {headers: {
-        "Zotero-API-Key" : account.token
-     }
-    };
-
-    let prefix = "users";
-    if (account.librarytype) {
-        prefix = "groups";
-    }
-    */
-
-    if (action.action == "add-new-note") {
-        /*
-        const url = "https://api.zotero.org/items/new?itemType=note";        
-        const response = await (got(url, req_opts));
-        if (await handleBackoff(response.headers) > 0) {
-            return res.json({message: "Rate limits exceeded", tryLater:true});
-        }
-        const json_obj = JSON.parse(response.body);
-        json_obj.note = action.args.note;
-        json_obj.parentItem = action.args.parent;
-        const new_url = `https://api.zotero.org/${prefix}/${account.libraryid}/items/`;
-        const result = await got(new_url, {
-            method: "POST",
-            headers: {
-                'Zotero-API-Key': account.token,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify([json_obj])
-        });
-        const result_json =  JSON.parse(result.body);
-        return res.json(result_json);   
-        */
+    if (action.action == "create-record") {
         console.log(action);
         return res.json({"message":"Success"});
     }
