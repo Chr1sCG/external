@@ -1,8 +1,8 @@
 {
-  "id": "calendar-app",
-  "name": "Calendar",
+  "id": "ext-app",
+  "name": "Ext",
   "version": "1.0.0",
-  "description": "Use date periods with more granularity",
+  "description": "External actions",
   "authentication": [
     {
       "id": "public",
