@@ -1,5 +1,5 @@
 {
-  "name": "dates-app",
+  "name": "ext-app",
   "version": "1.0.0",
   "private": true,
   "engines": {
@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "start-pm2": "pm2 start -f --watch --name=\"dates-app\" index.js",
+    "start-pm2": "pm2 start -f --watch --name=\"ext-app\" index.js",
     "test": "mocha"
   },
   "dependencies": {
