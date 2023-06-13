@@ -55,7 +55,7 @@ app.post(`/api/v1/synchronizer/data`, wrap(async (req, res) => {
 
 app.post(`/api/v1/automations/action/execute`, wrap(async (req, res) => {
 
-    let {action, account} = req.body;
+    let {action} = req.body;
     /*
     let req_opts = {headers: {
         "Zotero-API-Key" : account.token
@@ -84,7 +84,7 @@ app.post(`/api/v1/automations/action/execute`, wrap(async (req, res) => {
         */
         
         console.log(action);
-        console.log(account);
+        //console.log(account);
         /*
         const new_url = `https://api.zotero.org/${prefix}/${account.libraryid}/items/`;
         const result = await got(new_url, {
