@@ -13,13 +13,12 @@
   ],
   "sources": [],
   "responsibleFor": {
-    "dataSynchronization": true,
     "automations": true
   },
   "actions": [    
     {
       "action": "add-new-note",
-      "name": "Add new note to Zotero library",
+      "name": "External action",
       "args": [
         {
           "id":"note", 
