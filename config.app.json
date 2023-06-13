@@ -15,10 +15,17 @@
   "responsibleFor": {
     "dataSynchronization": true
   },
-  "actions": [  
+  "actions": [
+    {
+      "action": "add-new-paper",
+      "name": "Add new paper to Zotero library by DOI",
+      "args": [
+        {"id":"doi", "name":"DOI", "type":"text"}
+      ]
+    },    
     {
       "action": "add-new-note",
-      "name": "Test external action",
+      "name": "Add new note to Zotero library",
       "args": [
         {
           "id":"note", 
