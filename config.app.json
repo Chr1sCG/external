@@ -13,7 +13,7 @@
   ],
   "sources": [],
   "responsibleFor": {
-    "dataSynchronization": false,
+    "dataSynchronization": true,
     "automations": true
   },
   "actions": [    
