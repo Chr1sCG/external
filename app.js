@@ -43,7 +43,7 @@ app.post(`/api/v1/synchronizer/data`, wrap(async (req, res) => {
         
         let items = [];
         let item = {};
-        item.name = "Single;
+        item.name = "Single";
         item.id = uuid(JSON.stringify(item.name));
         items.push(item);
 
