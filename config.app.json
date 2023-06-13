@@ -18,22 +18,20 @@
   },
   "actions": [    
     {
-      "action": "add-new-note",
-      "name": "External action",
+      "action": "create-record",
+      "name": "Create record",
       "args": [
         {
-          "id":"note", 
-          "name":"Note Text", 
+          "id":"publicId", 
+          "name":"Public ID", 
           "type":"text",
-          "subType":"md",
-          "description":"The contents of the note you would like to add",
-          "textTemplateSupported":true
+          "description":"The entity's public ID"
         },
         {
-          "id":"parent", 
-          "name":"Literature Item ID", 
+          "id":"user", 
+          "name":"Who triggered the automation", 
           "type":"text",
-          "description":"Zotero key of the literature item this is a note for"
+          "description":"The public ID of the user who triggered this"
         }              
       ]
     }
