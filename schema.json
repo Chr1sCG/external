@@ -10,7 +10,8 @@
         },
         "test": {
             "name": "Test",
-            "type": "text"
+            "type": "text",
+            "subType": "single-select"
         }
     }
 }
