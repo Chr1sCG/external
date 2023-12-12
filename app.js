@@ -44,9 +44,11 @@ app.post(`/api/v1/synchronizer/data`, wrap(async (req, res) => {
         let items = [];
         let item = {};
         item.name = "Single";
-        item['Space/SelectName'] = "Option";
+        item['space/selectName'] = "Opt2";
         item.id = uuid(JSON.stringify(item.name));
         items.push(item);
+
+        console.log("---",JSON.stringify(items));
 
         return res.json({
             items
