@@ -7,6 +7,10 @@
         "name": {
             "name": "Name",
             "type": "text"
+        },
+        "test": {
+            "name": "Test",
+            "type": "text"
         }
     }
 }
