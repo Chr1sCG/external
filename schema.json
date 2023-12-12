@@ -8,7 +8,7 @@
             "name": "Name",
             "type": "text"
         },
-        "test": {
+        "space/selectName": {
             "name": "Test",
             "type": "text",
             "subType": "single-select"
